@@ -7,4 +7,4 @@
 * `$ firebase init functions`
 ## Deployment process
 * `$ firebase deploy --only functions`
-* "Windows": Replace $RESOURCE_DIR with %RESOURCE_DIR% if deployment fails
+* "Windows": "firebase.json" > Replace $RESOURCE_DIR with %RESOURCE_DIR% if deployment fails
