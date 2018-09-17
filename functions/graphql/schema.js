@@ -2,27 +2,27 @@ const graphqlTools = require('graphql-tools');
 const resolvers = require('./resolvers');
 
 const schema = `
-input FolderCreateInput {
+input CategoryCreateInput {
   name: String
 }
-input FolderInput {
+input CategoryInput {
   id: String!
   name: String
 }
-input FolderDeleteInput {
+input CategoryDeleteInput {
   id: String!
 }
-type Folder {
+type Category {
   id: String!
   name: String
 }
 type Query {
-  folders: [Folder]
+  categories: [Category]
 }
 type Mutation {
-  createFolder(input: FolderCreateInput!): Folder
-  updateFolder(input: FolderInput): Folder
-  deleteFolder(input: FolderDeleteInput): Folder
+  createCategory(input: CategoryCreateInput!): Category
+  updateCategory(input: CategoryInput): Category
+  deleteCategory(input: CategoryDeleteInput): Category
 }
 `;
 module.exports = graphqlTools.makeExecutableSchema({

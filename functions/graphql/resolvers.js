@@ -2,52 +2,52 @@ const admin = require('firebase-admin');
 const functions = require('firebase-functions');
 
 admin.initializeApp(functions.config().firebase);
-const foldersRef = admin.database().ref('folders');
+const categoriesRef = admin.database().ref('categories');
 module.exports = {
   Query: {
-    folders() {
-      return foldersRef.once('value')
+    categories() {
+      return categoriesRef.once('value')
         .then(snapshot => {
-          const folders = snapshot.val();
-          if (folders === null) return [];
-          return Object.keys(folders).map(o => Object.assign({ id: o }, folders[o]));
+          const categories = snapshot.val();
+          if (categories === null) return [];
+          return Object.keys(categories).map(o => Object.assign({ id: o }, categories[o]));
         });
     },
   },
   Mutation: {
-    createFolder(_, { input }) {
+    createCategory(_, { input }) {
       return (
         new Promise((resolve) => {
-          const folder = foldersRef.push(input, () => {
-            resolve(Object.assign({ id: folder.key }, input)
+          const Category = categoriesRef.push(input, () => {
+            resolve(Object.assign({ id: Category.key }, input)
             );
           });
         })
       );
     },
-    updateFolder(_, { input }) {
-      const folderRef = foldersRef.child(input.id);
-      return folderRef.once('value')
+    updateCategory(_, { input }) {
+      const CategoryRef = categoriesRef.child(input.id);
+      return CategoryRef.once('value')
         .then(snapshot => {
-          const folder = snapshot.val();
-          if (folder === null) throw new Error('404');
-          return folder;
+          const Category = snapshot.val();
+          if (Category === null) throw new Error('404');
+          return Category;
         })
-        .then((folder) => {
-          const update = Object.assign(folder, input);
+        .then((Category) => {
+          const update = Object.assign(Category, input);
           delete update.id;
-          return folderRef.set(update).then(() => (Object.assign({ id: input.id }, update)));
+          return CategoryRef.set(update).then(() => (Object.assign({ id: input.id }, update)));
         });
     },
-    deleteFolder(_, { input }) {
-      const folderRef = foldersRef.child(input.id);
-      return folderRef.once('value')
+    deleteCategory(_, { input }) {
+      const CategoryRef = categoriesRef.child(input.id);
+      return CategoryRef.once('value')
         .then((snapshot) => {
-          const folder = snapshot.val();
-          if (folder === null) throw new Error('404');
-          return Object.assign({ id: input.id }, folder);
+          const Category = snapshot.val();
+          if (Category === null) throw new Error('404');
+          return Object.assign({ id: input.id }, Category);
         })
-        .then(folder => folderRef.remove().then(() => (folder)));
+        .then(Category => CategoryRef.remove().then(() => (Category)));
     }
   }
 };
