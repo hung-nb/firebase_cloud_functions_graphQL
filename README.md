@@ -8,6 +8,11 @@
 * `$ mkdir firebase_graphQL`
 * `$ cd firebase_graphQL`
 * `$ firebase init functions`
+## Or if you already configured your firebase environment
+* `$ cd functions`
+* `$ yarn`
+* `$ cd ..`
+* `$ firebase use --add`
 ## Deployment process
 * `$ firebase deploy --only functions`
 * "Windows": "firebase.json" > Replace $RESOURCE_DIR with %RESOURCE_DIR% if deployment fails
