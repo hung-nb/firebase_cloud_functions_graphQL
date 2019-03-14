@@ -17,6 +17,7 @@
 * `$ firebase deploy --only functions`
 * "Windows": "firebase.json" > Replace $RESOURCE_DIR with %RESOURCE_DIR% if deployment fails
 ## Test on graphiQL
+* https://[xxxxxxxx].cloudfunctions.net/api/graphiql
 * Select data
 `query {
 categories{
