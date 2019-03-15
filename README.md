@@ -16,8 +16,12 @@
 ## Deployment process
 * `$ firebase deploy --only functions`
 * "Windows": "firebase.json" > Replace $RESOURCE_DIR with %RESOURCE_DIR% if deployment fails
+* If deployment failed because of Node 6, it is necessary to update Cloud function into Node 8 by set this into the "functions/package.json" file
+`"engines": {
+    "node": "8"
+},`
 ## Test on graphiQL
-* https://[xxxxxxxx].cloudfunctions.net/api/graphiql
+* `https://[xxxxxxxx].cloudfunctions.net/api/graphiql`
 * Select data
 `query {
 categories{
