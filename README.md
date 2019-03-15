@@ -21,7 +21,7 @@
     "node": "8"
 },`
 ## Test on graphiQL
-* `https://[xxxxxxxx].cloudfunctions.net/api/graphiql`
+* `https://[xxxxxxxx].cloudfunctions.net/api/graphql`
 * Select data
 `query {
 categories{
